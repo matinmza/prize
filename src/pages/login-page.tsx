@@ -1,5 +1,7 @@
+import LoginView from "@/sections/login-section/view";
+
 const LoginPage = () => {
-    return <div>LoginPage</div>;
+    return <LoginView />;
 };
 
 export default LoginPage;

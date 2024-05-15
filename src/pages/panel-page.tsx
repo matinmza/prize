@@ -1,5 +1,7 @@
+import PanelView from "@/sections/panel-section/view";
+
 const PanelPage = () => {
-    return <div>PanelPage</div>;
+    return <PanelView />;
 };
 
 export default PanelPage;

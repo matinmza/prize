@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./header";
 
-const LoginLayout: FC = () => {
+const AuthLayout: FC = () => {
     return (
         <div>
             <Header />
@@ -11,4 +11,4 @@ const LoginLayout: FC = () => {
     );
 };
 
-export default LoginLayout;
+export default AuthLayout;

@@ -1,19 +1,21 @@
 import { checkAuth } from "@/utils/auth-methods";
-import { isSeenOnBoarding } from "@/utils/local-storage";
+
 import { FC } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 interface PropI {
     Component: JSX.Element;
     auth?: boolean;
     redirectTo?: string;
 }
-const GuardRoute: FC<PropI> = ({ Component, auth, redirectTo = "/login" }) => {
+const GuardRoute: FC<PropI> = ({
+    Component,
+    auth,
+    redirectTo = "/auth/login",
+}) => {
     const userIsAuthenticated = checkAuth();
-    const location = useLocation();
 
-    const isOnboardingPage = location.pathname === "/on-boarding";
-    const userSeeOnboarding = isSeenOnBoarding();
+    // when user is authenticated and page need user authenticated
     if (auth && userIsAuthenticated) {
         return Component;
     }
@@ -21,16 +23,7 @@ const GuardRoute: FC<PropI> = ({ Component, auth, redirectTo = "/login" }) => {
     if (auth === false && userIsAuthenticated) {
         return <Navigate to={redirectTo} replace />;
     }
-    // user must first see onBoarding before see login form
-    if (
-        auth === false &&
-        !userIsAuthenticated &&
-        !userSeeOnboarding &&
-        !isOnboardingPage
-    ) {
-        return <Navigate to="/on-boarding" />;
-    }
-
+    // when user is not authenticated and page not need user authenticated
     if (!auth) {
         return Component;
     }

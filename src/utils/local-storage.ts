@@ -1,4 +1,4 @@
-export type LocalStorageValueT = "ON_BOARDING" | "TOKEN";
+export type LocalStorageValueT = "TOKEN";
 
 export const getLocalStorage = <T>(key: LocalStorageValueT): T | null => {
     try {
@@ -31,9 +31,6 @@ export const removeLocalStorage = (key: LocalStorageValueT): boolean => {
         return false;
     }
 };
-
-export const handleSetOnBoarding = () => setLocalStorage("ON_BOARDING", true);
-export const isSeenOnBoarding = () => getLocalStorage<boolean>("ON_BOARDING");
 
 // token
 export const handleSetToken = (token: string) =>
